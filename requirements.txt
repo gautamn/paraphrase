@@ -1,0 +1,8 @@
+nltk
+textblob
+torch
+transformers
+sentencepiece
+sentence_transformers
+optimum
+onnxruntime
