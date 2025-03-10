@@ -5,6 +5,7 @@ from nltk.tokenize import sent_tokenize
 from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor  # For parallelization
+import time
 
 # Logger setup
 logger = logging.getLogger(__name__)
@@ -89,12 +90,15 @@ if __name__ == "__main__":
     paraphrase_service = ParaphraseService()
 
     # Example usage
-    text = """India is the seventh-largest country in the world by land area and the second-most populous, 
-    with over 1.4 billion people. It is a land of immense cultural diversity, with over 2,000 ethnic groups 
-    and hundreds of languages spoken across its 28 states and 8 Union Territories. India is the birthplace 
-    of major religions such as Hinduism, Buddhism, Jainism, and Sikhism, which have influenced cultures worldwide. 
-    The country is also home to magnificent historical monuments, including the Taj Mahal, one of the Seven Wonders of the World."""
+    #text = """Artificial Intelligence (AI) is a branch of computer science that enables machines to mimic human intelligence. It involves technologies like **machine learning, deep learning, and natural language processing** to solve complex problems, recognize patterns, and automate tasks. AI is widely used in applications such as **virtual assistants, self-driving cars, healthcare diagnostics, fraud detection, and recommendation systems**. Machine learning allows AI models to improve over time by learning from data, while deep learning uses neural networks to process vast amounts of information. AI-powered chatbots and speech recognition systems, like Siri and Alexa, enhance human-computer interaction. Businesses use AI for **predictive analytics, automation, and personalized marketing**. However, AI also raises concerns about **job displacement, data privacy, and ethical decision-making**. As AI continues to evolve, it holds the potential to revolutionize industries and improve daily life, making it one of the most significant technological advancements of the modern era."""
+
+    text = "Artificial Intelligence (AI) is a branch of computer science that enables machines to mimic human intelligence."
+    start_time = time.time()  # Start the timer
 
     paraphrased = paraphrase_service.paraphrase(text)
+
+    end_time = time.time()  # End the timer
+
     print("Original:\n", text)
     print("\nParaphrased:\n", paraphrased)
+    print(f"\nExecution Time: {end_time - start_time:.4f} seconds")
